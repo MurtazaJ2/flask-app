@@ -10,14 +10,14 @@ pipeline {
     stages {
         stage('Clone Repository') {
             steps {
-		git 'https://github.com/MurtazaJ2/flask-app.git'
+				git 'https://github.com/MurtazaJ2/flask-app.git'
             }
         }
  
         stage('Build Docker Image') {
             steps {
                 script {
-			docker.build(DOCKER_IMAGE)
+					docker.build(DOCKER_IMAGE)
                 }
             }
         }
@@ -25,7 +25,7 @@ pipeline {
         stage('Push Docker Image') {
             steps {
                 script {
-                    docker.withRegistry('', 'dockerhub-credentials') {
+						docker.withRegistry('', 'dockerhub-credentials') {
                         docker.image(DOCKER_IMAGE).push()
                     }
                 }
