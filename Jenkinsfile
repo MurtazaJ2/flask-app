@@ -29,9 +29,7 @@ pipeline {
         stage('Deploy to Kubernetes') {
             steps {
 				echo "deploy stage"
-			script {
-                sh 'ls'
-				}
+				sh 'ls -l'
             }
         }
     }
