@@ -19,7 +19,7 @@ pipeline {
         stage('Push Docker Image') {
             steps {
                 script {
-						docker.withRegistry('', 'dockerhub-credentials') {
+						docker.withRegistry('', 'docker-cred') {
                         docker.image(DOCKER_IMAGE).push()
                     }
                 }
