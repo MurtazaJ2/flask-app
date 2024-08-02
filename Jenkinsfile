@@ -29,6 +29,7 @@ pipeline {
         stage('Deploy to Kubernetes') {
             steps {
 				echo "in deploy stage"
+				ls
 			script {
                 sh 'kubectl apply -f deployment.yaml'
 				}
