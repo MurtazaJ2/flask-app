@@ -30,7 +30,6 @@ pipeline {
             steps {
 				echo "in deploy stage"
                 kubectl apply -f deployment.yaml
-                }
             }
         }
     }
