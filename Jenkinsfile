@@ -2,6 +2,7 @@ pipeline {
     agent any
  
     environment {
+	
         DOCKER_IMAGE = "murtazaj2/flask-app:latest"
         KUBERNETES_DEPLOYMENT = "flask-app-deployment"
         KUBERNETES_SERVICE = "flask-app-service"
@@ -11,7 +12,7 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 script {
-					docker.build DOCKER_IMAGE
+					docker.build(DOCKER_IMAGE)
                 }
             }
         }
@@ -19,7 +20,7 @@ pipeline {
         stage('Push Docker Image') {
             steps {
                 script {
-						docker.withRegistry('', 'docker-cred') {
+						docker.withRegistry('', 'dockerhub') {
                         docker.image(DOCKER_IMAGE).push()
                     }
                 }
