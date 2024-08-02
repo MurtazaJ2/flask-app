@@ -30,7 +30,7 @@ pipeline {
             steps {
 				echo "deploy stage"
 			    script {
-			    	'ls -l'
+			    	echo 'ls -l'
                 }
 			}
         }
