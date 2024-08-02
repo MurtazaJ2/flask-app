@@ -10,7 +10,7 @@ pipeline {
     stages {
         stage('Clone Repository') {
             steps {
-				git 'https://github.com/MurtazaJ2/flask-app.git'
+				git clone 'git@github.com:MurtazaJ2/flask-app.git'
             }
         }
  
