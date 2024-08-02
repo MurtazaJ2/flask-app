@@ -26,12 +26,11 @@ pipeline {
                 }
 			}
 		}
-		stage('Deploy to Kubernetes') {
+        stage('Deploy to Kubernetes') {
             steps {
-                kubernetesDeploy(
-                    configs: 'k8s-deployment.yaml',
-                    kubeconfigId: 'kubernetes-cred'
-                )
+                withKubeConfig([credentialsId: 'kubernetes-cred']) {
+                    sh 'kubectl apply -f k8s/deployment.yaml'
+                }
             }
         }
     }
