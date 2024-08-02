@@ -8,12 +8,6 @@ pipeline {
     }
  
     stages {
-        stage('Clone Repository') {
-            steps {
-				git 'https://github.com/MurtazaJ2/flask-app.git'
-            }
-        }
- 
         stage('Build Docker Image') {
             steps {
                 script {
