@@ -9,6 +9,7 @@ pipeline {
     }
  
     stages {
+	
         stage('Build Docker Image') {
             steps {
                 script {
@@ -30,6 +31,9 @@ pipeline {
             steps {
 				echo "deploy stage"
             }
+			script {
+				sh 'ls -l'
+			}
         }
     }
 }
