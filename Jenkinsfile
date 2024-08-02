@@ -30,7 +30,7 @@ pipeline {
             steps {
 				echo "deploy stage"
 			    script {
-			    	echo 'ls -l'
+			    	'pwd'
                 }
 			}
         }
