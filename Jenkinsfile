@@ -24,7 +24,15 @@ pipeline {
                         docker.image(DOCKER_IMAGE).push()
                     }
                 }
+			}
+		}
+		stage('Deploy to Kubernetes') {
+            steps {
+                kubernetesDeploy(
+                    configs: 'k8s-deployment.yaml',
+                    kubeconfigId: 'kubernetes-cred'
+                )
             }
         }
-	}
+    }
 }
