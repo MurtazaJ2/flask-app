@@ -11,7 +11,7 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 script {
-					docker.build(DOCKER_IMAGE)
+					docker.build DOCKER_IMAGE
                 }
             }
         }
@@ -19,7 +19,7 @@ pipeline {
         stage('Push Docker Image') {
             steps {
                 script {
-						docker.withRegistry('https://index.docker.io/v1/', 'docker-cred') {
+						docker.withRegistry('', 'docker-cred') {
                         docker.image(DOCKER_IMAGE).push()
                     }
                 }
