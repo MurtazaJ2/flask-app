@@ -5,6 +5,8 @@ pipeline {
         DOCKER_IMAGE = "murtazaj2/flask-app:latest"
         KUBERNETES_DEPLOYMENT = "flask-app-deployment"
         KUBERNETES_SERVICE = "flask-app-service"
+        KUBECONFIG_PATH = "C:\Users\Murtaza\kubeconfig\config"
+        KUBECTL_PATH = "C:\Users\Murtaza\kubectl"
     }
 
     stages {
@@ -28,9 +30,10 @@ pipeline {
 
         stage('Deploy to Kubernetes') {
             steps {
-				echo "deploy stage"
-			    script {
-			    	'pwd'
+				script{
+                    bat """
+                    ${KUBECTL_PATH} --kubeconfig=${KUBECONFIG_PATH} apply -f deployment.yaml
+                    """
                 }
 			}
         }
