@@ -5,7 +5,8 @@ pipeline {
         DOCKER_IMAGE = "murtazaj2/flask-app:latest"
         KUBERNETES_DEPLOYMENT = "flask-app-deployment"
         KUBERNETES_SERVICE = "flask-app-service"
-        KUBECONFIG = credentials('kubernetes-cred')
+        KUBECONFIG_PATH = "/home/softnautics/.kube"
+        KUBECTL_PATH = "/home/softnautics/.minikube"
     }
 
     stages {
@@ -27,12 +28,12 @@ pipeline {
 			}
 		}
 
-        stage('Deploy to Kubernetes') {
+        stage('Deploy deployment and service file') {
             steps {
-                withKubeConfig([credentialsId:'kubernetes-cred']) {
-                    bat 'kubectl apply -f deployment.yaml'
+                script {
+                    kubernetesDeploy configs: 'deployment.yaml', kubeconfigId: 'kube-cred'
                 }
-			}
+            }
         }
     }
 }
