@@ -28,6 +28,7 @@ pipeline {
 
         stage('Deploy deployment and service file') {
             steps {
+                sh 'pwd'
                 sh 'kubectl get all'
             }
         }
