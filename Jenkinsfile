@@ -1,12 +1,10 @@
 pipeline {
-    agent any
+    agent { label 'agent1' }
 
     environment {
         DOCKER_IMAGE = "murtazaj2/flask-app:latest"
         KUBERNETES_DEPLOYMENT = "flask-app-deployment"
         KUBERNETES_SERVICE = "flask-app-service"
-        KUBECONFIG_PATH = "/home/softnautics/.kube"
-        KUBECTL_PATH = "/home/softnautics/.minikube"
     }
 
     stages {
@@ -30,9 +28,7 @@ pipeline {
 
         stage('Deploy deployment and service file') {
             steps {
-                script {
-                    kubernetesDeploy(configs: 'deployment.yaml', kubeconfigId: 'kube-cred')
-                }
+                sh 'kubectl get all'
             }
         }
     }
