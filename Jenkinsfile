@@ -28,8 +28,7 @@ pipeline {
 
         stage('Deploy deployment and service file') {
             steps {
-                sh 'pwd'
-                sh 'kubectl get all'
+                sh 'kubectl apply -f deployment.yaml'
             }
         }
     }
