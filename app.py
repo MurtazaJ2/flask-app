@@ -3,6 +3,7 @@ app = Flask(__name__)
 
 @app.route('/getMessage')
 def hello():
+    print("under the hello func")
     return "Hello, World!"
 
 if __name__ == "__main__":
